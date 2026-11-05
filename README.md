@@ -13,6 +13,10 @@ Yaparr shares rooms and direct chats as links. The secret part is always in the 
 
 The page reads the fragment in the browser, checks its shape (an invite is base64url of 32, 64 or 86 bytes like `RoomKey.Parse`; a peer id is 64 lowercase hex characters), removes it from the address bar and history, and hands `yaparr://…` to the operating system. The app asks the person to confirm before it joins or opens anything. The page sends no referrer and has a strict Content-Security-Policy, and nothing on the site loads third-party code.
 
+## Downloads
+
+The home page and the link pages pick a download for the visitor's system (Windows installer, Flatpak or `.deb`, by architecture) from GitHub's latest release, read in the browser from `api.github.com`. If that fails, Windows falls back to the releases page; the Flatpak link never needs it. Detection is a guess and every download stays on the page.
+
 ## Development
 
 Needs Node 20.19+, 22.12+ or 24+.
