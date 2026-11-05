@@ -11,8 +11,8 @@ import { REPO } from './downloads';
         <img class="hero-icon" src="yaparr-icon.svg" alt="" width="96" height="96" />
         <h1>Chat, call and share your screen.<br /><span>No server in the middle.</span></h1>
         <p class="lead">
-          Yaparr finds your friends on the BitTorrent network and talks to them directly, with everything encrypted. There is
-          no account to make and no company's computer between you.
+          Yaparr finds your friends through the BitTorrent network and talks to them directly, with everything encrypted. There is
+          no signup and no company's server between you.
         </p>
         <app-downloads />
       </div>
