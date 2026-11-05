@@ -13,6 +13,7 @@ import { Component } from '@angular/core';
         <a class="button" href="https://github.com/zburtle/Yaparr/releases/latest">Download</a>
         <a class="button secondary" href="https://github.com/zburtle/Yaparr">Source on GitHub</a>
       </p>
+      <p class="note">On Linux, <a href="https://flatpak.yaparr.com">install the Flatpak</a> to get updates with the rest of your software.</p>
     </main>
   `,
 })
