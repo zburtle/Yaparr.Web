@@ -1,0 +1,9 @@
+:root { color-scheme: light dark; --ink: #26306b; --bg: #f6f7fd; --accent: #4f6bed; }
+@media (prefers-color-scheme: dark) { :root { --ink: #e8eafc; --bg: #14172e; --accent: #6a84f5; } }
+body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: var(--ink); background: var(--bg); }
+main { max-width: 34rem; margin: 0 auto; padding: 4rem 1rem; text-align: center; }
+.logo { max-width: 100%; height: auto; }
+.actions { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+.button { padding: .6rem 1.2rem; border-radius: .5rem; background: var(--accent); color: #fff; text-decoration: none; font-weight: 600; }
+.button.secondary { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+.note { font-size: .85rem; opacity: .75; }

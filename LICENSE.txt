@@ -1,0 +1,26 @@
+Yaparr
+Copyright (C) 2026 Zach Burtle
+
+Yaparr is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This
+covers the whole repository: the library in src/, the apps in samples/, and the tools, tests and installer.
+The licence is in COPYING.
+SPDX-License-Identifier: GPL-3.0-or-later
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+Source code
+  The source code of every release is at https://github.com/zburtle/Yaparr, at the tag named after the release (for
+  example v1.10.0).
+
+Earlier releases
+  Releases published up to and including v1.10.0 were under the MIT licence and remain available under it. The change
+  applies to the releases that follow.
+
+Other software
+  Yaparr uses other software under its own licences: see THIRD-PARTY-NOTICES.txt. FFmpeg, which Yaparr runs as a
+  separate program to share and show screens, is not part of Yaparr and has its own licence; see the notes there.
+
+Contributions
+  Contributions are accepted under the same licence.
