@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Downloads } from './downloads.component';
 import { REPO } from './downloads';
+import { HowItWorks } from './how-it-works';
 
 @Component({
   selector: 'app-home',
-  imports: [Downloads],
+  imports: [Downloads, HowItWorks],
   template: `
     <section class="hero">
       <div class="wrap">
@@ -44,6 +45,8 @@ import { REPO } from './downloads';
         </p>
       </div>
     </section>
+
+    <app-how-it-works />
 
     <section class="wrap open">
       <h2>Free software</h2>
