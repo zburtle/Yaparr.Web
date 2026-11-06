@@ -2,7 +2,7 @@ import { Component, OnDestroy, inject, signal } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Downloads } from './downloads.component';
-import { LinkKind, appLink, validate } from './links';
+import { LinkKind, androidLink, appLink, validate } from './links';
 
 @Component({
   selector: 'app-open-link',
@@ -49,8 +49,9 @@ export class OpenLink implements OnDestroy {
   constructor() {
     const value = validate(this.kind, inject(ActivatedRoute).snapshot.fragment);
     if (value === null) return;
-    const link = appLink(this.kind, value);
-    // Angular would rewrite a yaparr: address to "unsafe:"; this one is built only from a value that passed validate().
+    // On Android the link is an intent that names the app, so nothing else can take it.
+    const link = /android/i.test(navigator.userAgent) ? androidLink(this.kind, value) : appLink(this.kind, value);
+    // Angular would rewrite a yaparr: or intent: address to "unsafe:"; this one is built only from a value that passed validate().
     this.target.set(inject(DomSanitizer).bypassSecurityTrustUrl(link));
     // Take the secret out of the address bar and history so it does not linger there or get shared by accident.
     history.replaceState(history.state, '', location.pathname);

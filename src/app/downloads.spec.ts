@@ -9,6 +9,7 @@ const json = {
     { name: 'yaparr_1.33.0_amd64.deb', size: 40242670, browser_download_url: dl + 'yaparr_1.33.0_amd64.deb' },
     { name: 'yaparr_1.33.0_arm64.deb', size: 37562232, browser_download_url: dl + 'yaparr_1.33.0_arm64.deb' },
     { name: 'yaparr_1.33.0_amd64.flatpak', size: 39450712, browser_download_url: dl + 'yaparr_1.33.0_amd64.flatpak' },
+    { name: 'Yaparr-1.33.0.apk', size: 46003779, browser_download_url: dl + 'Yaparr-1.33.0.apk' },
     { name: 'evil.msi', size: 1, browser_download_url: 'https://evil.example/evil.msi' },
   ],
 };
@@ -36,7 +37,7 @@ describe('parseRelease', () => {
     const r = parseRelease(json)!;
     expect(r.version).toBe('1.33.0');
     expect(r.assets.map(a => a.name)).not.toContain('evil.msi');
-    expect(r.assets.length).toBe(4);
+    expect(r.assets.length).toBe(5);
   });
   it('rejects nonsense', () => {
     expect(parseRelease(null)).toBeNull();
@@ -55,6 +56,22 @@ describe('downloadsFor', () => {
     const plan = downloadsFor({ os: 'linux', arch: 'arm64' }, release);
     expect(plan.primary?.url).toBe(FLATPAK_REF);
     expect(plan.others[0].url).toBe(dl + 'yaparr_1.33.0_arm64.deb');
+  });
+  it('offers the Android app on an Android phone, with the other downloads below it', () => {
+    const plan = downloadsFor({ os: 'android', arch: 'arm64' }, release);
+    expect(plan.primary?.url).toBe(dl + 'Yaparr-1.33.0.apk');
+    expect(plan.primary?.label).toBe('Android app');
+    expect(plan.primary?.hint).toBeTruthy();
+    expect(plan.others.map(d => d.label)).not.toContain('Android app');
+  });
+  it('lists the Android app among the downloads for a computer', () => {
+    expect(downloadsFor({ os: 'windows', arch: 'x64' }, release).others.map(d => d.label)).toContain('Android app');
+  });
+  it('has no Android download where the release has no package, and the phone gets the list', () => {
+    const without = parseRelease({ ...json, assets: json.assets.filter(a => !a.name.endsWith('.apk')) });
+    const plan = downloadsFor({ os: 'android', arch: 'arm64' }, without);
+    expect(plan.primary).toBeNull();
+    expect(plan.others.length).toBeGreaterThan(0);
   });
   it('still works before the release is known', () => {
     expect(downloadsFor({ os: 'windows', arch: 'x64' }, null).primary?.url).toBe(RELEASES_PAGE);

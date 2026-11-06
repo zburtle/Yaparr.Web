@@ -10,8 +10,11 @@ import { RELEASES_PAGE } from './downloads';
       @if (p.primary; as primary) {
         <a class="button large" [href]="primary.url">Download for {{ systemName() }}</a>
         <p class="meta">{{ primary.label }} · {{ primary.detail }}</p>
+        @if (primary.hint; as hint) {
+          <p class="meta">{{ hint }}</p>
+        }
       } @else {
-        <p class="meta">Yaparr is for Windows and Linux. Pick a download for another computer:</p>
+        <p class="meta">Yaparr is for Windows, Linux and Android. Pick a download for another system:</p>
       }
       @if (p.others.length) {
         <details class="others" [open]="!p.primary">
@@ -33,6 +36,7 @@ export class Downloads {
   readonly compact = input(false);
 
   protected systemName(): string {
-    return this.info.platform().os === 'windows' ? 'Windows' : 'Linux';
+    const os = this.info.platform().os;
+    return os === 'windows' ? 'Windows' : os === 'android' ? 'Android' : 'Linux';
   }
 }

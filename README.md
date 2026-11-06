@@ -15,7 +15,7 @@ The page reads the fragment in the browser, checks its shape (an invite is base6
 
 ## Downloads
 
-The home page and the link pages pick a download for the visitor's system (Windows installer, Flatpak or `.deb`, by architecture) from GitHub's latest release, read in the browser from `api.github.com`. If that fails, Windows falls back to the releases page; the Flatpak link never needs it. Detection is a guess and every download stays on the page.
+The home page and the link pages pick a download for the visitor's system (Windows installer, Flatpak or `.deb` by architecture, or the Android package) from GitHub's latest release, read in the browser from `api.github.com`. If that fails, Windows falls back to the releases page; the Flatpak link never needs it. Detection is a guess and every download stays on the page.
 
 ## Development
 
