@@ -1,4 +1,4 @@
-import { FLATPAK_REF, RELEASES_PAGE, downloadsFor, parseRelease } from './downloads';
+import { FLATPAK_REF, RELEASES_PAGE, downloadsFor, parseAndroidRelease, parseRelease } from './downloads';
 import { detectPlatform } from './platform';
 
 const dl = 'https://github.com/zburtle/Yaparr/releases/download/v1.33.0/';
@@ -81,5 +81,41 @@ describe('downloadsFor', () => {
     const plan = downloadsFor({ os: 'mac', arch: 'arm64' }, release);
     expect(plan.primary).toBeNull();
     expect(plan.others.length).toBeGreaterThan(2);
+  });
+});
+
+describe('the Android releases', () => {
+  const adl = 'https://github.com/zburtle/Yaparr/releases/download/android-v1.47.0/';
+  const android = (tag: string, extra: object = {}) => ({
+    tag_name: tag,
+    assets: [{ name: 'Yaparr-' + tag.replace('android-v', '') + '.apk', size: 47000000, browser_download_url: `https://github.com/zburtle/Yaparr/releases/download/${tag}/Yaparr-${tag.replace('android-v', '')}.apk` }],
+    ...extra,
+  });
+
+  it('finds the newest published Android release in the list, whatever else is in it', () => {
+    const list = [json, android('android-v1.48.0', { draft: true }), android('android-v1.47.0'), android('android-v1.46.0')];
+    const release = parseAndroidRelease(list);
+    expect(release?.version).toBe('1.47.0');
+    expect(release?.assets[0].name).toBe('Yaparr-1.47.0.apk');
+  });
+
+  it('finds none when no release is an Android one', () => {
+    expect(parseAndroidRelease([json])).toBeNull();
+    expect(parseAndroidRelease({ message: 'rate limited' })).toBeNull();
+  });
+
+  it('offers a phone the newest Android release instead of the package in an older latest release', () => {
+    const latest = parseRelease(json);
+    const newest = parseAndroidRelease([android('android-v1.47.0')]);
+    const plan = downloadsFor({ os: 'android', arch: 'arm64' }, latest, newest);
+    expect(plan.primary?.url).toBe(adl + 'Yaparr-1.47.0.apk');
+    expect(plan.primary?.detail).toContain('v1.47.0');
+    // The old package is not offered a second time in the list.
+    expect(plan.others.filter(d => d.label === 'Android app').length).toBe(0);
+  });
+
+  it('still offers the package of the latest release when there is no Android release', () => {
+    const plan = downloadsFor({ os: 'android', arch: 'arm64' }, parseRelease(json), null);
+    expect(plan.primary?.url).toBe(dl + 'Yaparr-1.33.0.apk');
   });
 });
