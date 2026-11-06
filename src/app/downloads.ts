@@ -23,7 +23,22 @@ export function parseRelease(json: unknown): Release | null {
     if (typeof a?.['name'] === 'string' && typeof a['browser_download_url'] === 'string' && a['browser_download_url'].startsWith(DOWNLOAD_PREFIX))
       assets.push({ name: a['name'], size: typeof a['size'] === 'number' ? a['size'] : 0, url: a['browser_download_url'] });
   }
-  return { version: r.tag_name.replace(/^v/, ''), assets };
+  return { version: r.tag_name.replace(/^(?:android-)?v/, ''), assets };
+}
+
+/**
+ * The Android app is released on its own (tags like android-v1.2.3, never marked as the latest release), so its package is not in the latest release
+ * any more. Reads GitHub's list of releases (newest first) and keeps the newest published Android one.
+ */
+export function parseAndroidRelease(json: unknown): Release | null {
+  if (!Array.isArray(json)) return null;
+  for (const entry of json as Record<string, unknown>[]) {
+    if (typeof entry?.['tag_name'] !== 'string' || !/^android-v\d/.test(entry['tag_name'])) continue;
+    if (entry['draft'] === true || entry['prerelease'] === true) continue;
+    const release = parseRelease(entry);
+    if (release) return release;
+  }
+  return null;
 }
 
 export function megabytes(bytes: number): string {
@@ -52,9 +67,15 @@ function describe(asset: Asset, release: Release): Download | null {
   return null;
 }
 
-/** The download for a system, and the rest below it. Without a release (not loaded, or GitHub unreachable) Windows falls back to the releases page. */
-export function downloadsFor(platform: Platform, release: Release | null): Plan {
-  const all = (release?.assets ?? []).map(a => ({ asset: a, d: describe(a, release!) })).filter((x): x is { asset: Asset; d: Download } => x.d !== null);
+/**
+ * The download for a system, and the rest below it. Without a release (not loaded, or GitHub unreachable) Windows falls back to the releases page.
+ * The Android package comes from the newest Android release when there is one (an older latest release may still hold an Android package from before the
+ * Android app had releases of its own).
+ */
+export function downloadsFor(platform: Platform, release: Release | null, android: Release | null = null): Plan {
+  const all = [android, release]
+    .flatMap(r => (r ? r.assets.map(a => ({ asset: a, d: describe(a, r) })) : []))
+    .filter((x): x is { asset: Asset; d: Download } => x.d !== null);
   const msi = all.find(x => x.asset.name.endsWith('.msi'))?.d;
   const debs = all.filter(x => x.asset.name.endsWith('.deb'));
   const apk = all.find(x => x.asset.name.endsWith('.apk'))?.d;
