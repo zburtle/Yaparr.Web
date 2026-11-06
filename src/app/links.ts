@@ -27,6 +27,14 @@ export function appLink(kind: LinkKind, value: string): string {
   return `yaparr://${kind}/${value}`;
 }
 
+/**
+ * The same link for Chrome on Android, which hands an intent: address to the app named in it. Naming the package means no other app can
+ * pick the link up, which matters because an invite is a secret; if the app is not installed Chrome opens the fallback page instead.
+ */
+export function androidLink(kind: LinkKind, value: string, fallback = 'https://yaparr.com/'): string {
+  return `intent://${kind}/${value}#Intent;scheme=yaparr;package=org.yaparr.android;S.browser_fallback_url=${encodeURIComponent(fallback)};end`;
+}
+
 /** The https link people share. */
 export function shareLink(kind: LinkKind, value: string, origin = 'https://yaparr.com'): string {
   return `${origin}/${kind}#${value}`;
