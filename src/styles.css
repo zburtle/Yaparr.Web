@@ -99,6 +99,12 @@ h2 { font-size: 1.75rem; }
 
 /* Link pages */
 .link-page { padding-top: 3.5rem; }
+.signup { margin: 1.25rem 0 0; text-align: left; }
+.signup label { display: block; font-weight: 600; margin-bottom: .35rem; }
+.signup input[type='email'] { box-sizing: border-box; width: 100%; font: inherit; padding: .7rem .8rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink); }
+.signup input[type='email']:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+.signup .actions { text-align: center; margin: 1.25rem 0 0; }
+.signup button.button { border: 0; cursor: pointer; font: inherit; font-weight: 600; }
 .panel { max-width: 34rem; margin: 0 auto; text-align: center; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 2.25rem 1.5rem; box-shadow: 0 12px 40px var(--glow); }
 .panel-icon { border-radius: 16px; }
 .panel h1 { font-size: 1.75rem; margin-top: 1rem; }
