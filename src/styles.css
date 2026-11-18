@@ -113,3 +113,9 @@ h2 { font-size: 1.75rem; }
 .actions { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
 .hint { background: var(--band); border-radius: 10px; padding: .6rem .9rem; font-size: .95rem; }
 .note { font-size: .85rem; color: var(--muted); }
+
+.prose { max-width: 44rem; padding-top: 2.5rem; padding-bottom: 3rem; }
+.prose h2 { font-size: 1.3rem; margin-top: 2rem; }
+.prose ul { padding-left: 1.25rem; }
+.prose li { margin-bottom: .75rem; }
+.prose .muted { color: var(--muted); }
