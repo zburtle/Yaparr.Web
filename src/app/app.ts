@@ -22,6 +22,7 @@ import { REPO } from './downloads';
         <nav aria-label="Footer">
           <a [href]="repo + '/releases'">Releases</a>
           <a href="https://flatpak.yaparr.com">Flatpak repository</a>
+          <a routerLink="/privacy">Privacy</a>
           <a [href]="repo + '/blob/master/docs/security.md'">Security</a>
           <a [href]="repo + '/issues'">Report a problem</a>
         </nav>
