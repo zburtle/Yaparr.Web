@@ -10,6 +10,7 @@ import { REPO } from './downloads';
       <div class="wrap bar">
         <a class="brand" routerLink="/"><img src="yaparr-icon.svg" alt="" width="32" height="32" /><span>Yaparr</span></a>
         <nav aria-label="Main">
+          <a routerLink="/guide">Set up</a>
           <a [href]="repo + '/tree/master/docs'">Docs</a>
           <a [href]="repo">GitHub</a>
         </nav>

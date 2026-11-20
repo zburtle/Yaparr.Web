@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Downloads } from './downloads.component';
 import { REPO } from './downloads';
 import { HowItWorks } from './how-it-works';
 
 @Component({
   selector: 'app-home',
-  imports: [Downloads, HowItWorks],
+  imports: [Downloads, HowItWorks, RouterLink],
   template: `
     <section class="hero">
       <div class="wrap">
@@ -44,6 +45,15 @@ import { HowItWorks } from './how-it-works';
           <a [href]="repo + '/blob/master/docs/security.md'">security notes</a> say what is and isn't protected.
         </p>
       </div>
+    </section>
+
+    <section class="wrap open">
+      <h2>Setting up</h2>
+      <p>
+        New to Yaparr, or adding a phone or a computer to an account you already have? A short guide asks two questions and shows you the
+        steps.
+      </p>
+      <p class="actions"><a class="button" routerLink="/guide">Set up your profile</a></p>
     </section>
 
     <app-how-it-works />
