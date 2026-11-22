@@ -164,3 +164,10 @@ h2 { font-size: 1.75rem; }
 .col-note { margin: 1rem 0 0; color: var(--muted); font-size: .9rem; }
 .compare .card p + p { margin-top: .5rem; }
 @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+
+/* The guides (/learn): what a setting does, one page for each topic. */
+.learn h2 { margin-top: 2rem; font-size: 1.4rem; scroll-margin-top: 4.5rem; }
+.learn ul { padding-left: 1.25rem; }
+.learn li { margin: .4rem 0; }
+.learn ul.learn-list { list-style: none; padding: 0; display: grid; gap: .75rem; }
+.learn .actions { margin-top: 2.5rem; }

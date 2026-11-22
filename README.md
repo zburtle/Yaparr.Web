@@ -30,6 +30,18 @@ The server side (making codes, the `/signup` endpoint) is not part of this repos
 
 The home page and the link pages pick a download for the visitor's system (Windows installer, Flatpak or `.deb` by architecture, or the Android package) from GitHub's latest release, read in the browser from `api.github.com`. If that fails, Windows falls back to the releases page; the Flatpak link never needs it. Detection is a guess and every download stays on the page.
 
+## Guides
+
+`https://yaparr.com/learn` has short explanations of Yaparr's settings, one page for each topic (`/learn/yaparr-cloud`, `/learn/notifications`, and so on). The apps link to them from a "Learn more about …" line under a setting, and to the heading that is about it (`/learn/yaparr-cloud#the-sync-key`), so a heading's anchor is part of what the apps rely on; `src/app/learn.spec.ts` lists the ones they use.
+
+The text is written in the Yaparr repository, in `docs/guides`, and copied here as data:
+
+```bash
+node scripts/sync-learn.mjs ../Yaparr/docs/guides   # writes src/app/learn-content.ts
+```
+
+Change a guide there, run this, and commit `learn-content.ts`. Do not edit that file by hand. The script understands what the guides use (a title, `##` sections, paragraphs, `-` lists, and bold, italic, code and links in them) and stops with a message for anything else, so nothing is dropped quietly. Links between guides stay on this site; links to the Yaparr documentation go to GitHub.
+
 ## Development
 
 Needs Node 20.19+, 22.12+ or 24+.
