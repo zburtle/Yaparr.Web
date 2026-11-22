@@ -7,7 +7,7 @@ import { REPO } from './downloads';
   template: `
     <section class="wrap prose">
       <h1>Yaparr privacy policy</h1>
-      <p class="muted">Last changed: 18 November 2026.</p>
+      <p class="muted">Last changed: 22 November 2026.</p>
 
       <p>
         <strong>In short.</strong> Yaparr sends your messages, pictures, voice and shared screens directly between you and the
@@ -63,6 +63,16 @@ import { REPO } from './downloads';
         </li>
       </ul>
       <p>We do not sell or share this data. It is used only to provide these features.</p>
+
+      <h2>Paying for Yaparr Cloud (optional)</h2>
+      <p>
+        Yaparr Cloud on cloud.yaparr.com has a paid plan. Payments are handled by <a href="https://polar.sh">Polar</a>, who is the
+        seller: Polar sees your email address, your card and your country, and sends your receipt. We never see your card. What
+        Yaparr Cloud keeps is only the state of the subscription (that it is active, ending or over, and when the paid period
+        ends), the ids Polar gives it, and a random number that stands for your account at Polar in place of your email address.
+        Accounts that are not on the paid plan keep nothing of this. When you delete your account, its subscription is ended at
+        Polar and what Yaparr Cloud keeps about it is removed; Polar keeps what the law asks of it, under its own policy.
+      </p>
 
       <h2>Google's push (optional fallback)</h2>
       <p>

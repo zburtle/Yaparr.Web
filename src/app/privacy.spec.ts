@@ -10,4 +10,14 @@ describe('Privacy', () => {
     expect(el.querySelector('h1')?.textContent).toContain('privacy policy');
     expect(el.querySelector('a[href="https://cloud.yaparr.com/account/delete"]')).toBeTruthy();
   });
+
+  it('says who takes payments and what is kept about them', async () => {
+    await TestBed.configureTestingModule({ imports: [Privacy] }).compileComponents();
+    const f = TestBed.createComponent(Privacy);
+    f.detectChanges();
+    const text = (f.nativeElement as HTMLElement).textContent!.replace(/\s+/g, ' ');
+    expect(text).toContain('Polar');
+    expect(text).toContain('We never see your card');
+    expect(text).toContain('is ended at Polar');
+  });
 });
