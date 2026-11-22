@@ -41,8 +41,9 @@ import { ACCOUNT_PAGE, PRICE_MONTH, PRICE_YEAR, REFUND_LAW, REFUND_RULES, START_
       </form>
       <p class="note">
         This sends your email address to <strong>cloud.yaparr.com</strong>, which then sends you to Polar's page to pay. When you come
-        back you choose your password on cloud.yaparr.com's own page, so no password is typed here. Your email address only names the
-        account: nothing is emailed to you by Yaparr (Polar emails the receipt). If you already have an account, sign in instead:
+        back, Yaparr Cloud emails you a link to choose your password on cloud.yaparr.com's own page, so no password is typed here and
+        the address is proved to be yours. That link, and a link to reset a forgotten password if you ask for one, are the only email
+        Yaparr sends: nothing else, ever (Polar emails the receipt). If you already have an account, sign in instead:
         <a [href]="account">manage your subscription</a>.
       </p>
 

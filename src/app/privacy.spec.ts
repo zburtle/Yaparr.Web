@@ -20,4 +20,16 @@ describe('Privacy', () => {
     expect(text).toContain('We never see your card');
     expect(text).toContain('is ended at Polar');
   });
+
+  it('says what Yaparr Cloud emails, who delivers it, and that it never sends anything else', async () => {
+    await TestBed.configureTestingModule({ imports: [Privacy] }).compileComponents();
+    const f = TestBed.createComponent(Privacy);
+    f.detectChanges();
+    const text = (f.nativeElement as HTMLElement).textContent!.replace(/\s+/g, ' ');
+    expect(text).toContain('Email from Yaparr Cloud');
+    expect(text).toContain('a link that you asked for');
+    expect(text).toContain('never sends marketing');
+    expect(text).toContain('SMTP2GO');
+    expect(text).not.toContain('nothing is ever emailed');   // the old promise, no longer true
+  });
 });

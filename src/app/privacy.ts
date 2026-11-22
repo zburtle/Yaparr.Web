@@ -7,7 +7,7 @@ import { REPO } from './downloads';
   template: `
     <section class="wrap prose">
       <h1>Yaparr privacy policy</h1>
-      <p class="muted">Last changed: 22 November 2026.</p>
+      <p class="muted">Last changed: 23 November 2026.</p>
 
       <p>
         <strong>In short.</strong> Yaparr sends your messages, pictures, voice and shared screens directly between you and the
@@ -43,8 +43,8 @@ import { REPO } from './downloads';
           room's members are.
         </li>
         <li>
-          <strong>Your email address,</strong> which only names the account (nothing is ever emailed to you), and a hash of your
-          password.
+          <strong>Your email address,</strong> which names the account and is where Yaparr Cloud sends the links you ask for (see
+          "Email from Yaparr Cloud" below), and a hash of your password.
         </li>
         <li>
           <strong>An encrypted backup</strong> of your profile and <strong>an encrypted copy of your name, rooms and blocks</strong>
@@ -63,6 +63,16 @@ import { REPO } from './downloads';
         </li>
       </ul>
       <p>We do not sell or share this data. It is used only to provide these features.</p>
+
+      <h2>Email from Yaparr Cloud</h2>
+      <p>
+        Yaparr Cloud sends email for one purpose: a link that you asked for. That is a link to choose your password when you sign
+        up or after you pay, and a link to reset a forgotten password. It never sends marketing, newsletters or notices you did not
+        ask for. The links work once and expire (within an hour, or a day after paying). The email is sent through
+        <a href="https://www.smtp2go.com">SMTP2GO</a>, a mail service that sees your email address and the message while it delivers
+        it. Yaparr Cloud keeps no copy of the message, and its log records only that a message was sent, never to whom. A server that
+        you or a friend run sends email only if its owner has set that up.
+      </p>
 
       <h2>Paying for Yaparr Cloud (optional)</h2>
       <p>
