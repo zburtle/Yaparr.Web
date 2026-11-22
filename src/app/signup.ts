@@ -26,8 +26,9 @@ import { SignupLink, parseSignupLink, signupAction } from './signup-link';
           </form>
           <p class="note">
             This sends your email address and the code from your link to <strong>{{ l.host }}</strong>, which then asks you to choose a
-            password on its own page. No password is typed here, and the code never reaches yaparr.com. Nothing is emailed to you. Only
-            continue if the person who sent you the link runs {{ l.host }}.
+            password on its own page, or, if that server sends email, emails you a link to it. No password is typed here, and the code
+            never reaches yaparr.com. Nothing else is ever emailed to you. Only continue if the person who sent you the link runs
+            {{ l.host }}.
           </p>
           <hr />
           <h2>Don't have Yaparr yet?</h2>

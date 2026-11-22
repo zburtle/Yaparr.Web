@@ -8,6 +8,7 @@ import { ACCOUNT_PAGE, PRICE_MONTH, PRICE_YEAR, REFUND_LAW, REFUND_RULES, START_
 import { Subscribe } from './subscribe';
 
 async function page(url: string): Promise<HTMLElement> {
+  TestBed.resetTestingModule();   // a test may look at more than one page
   TestBed.configureTestingModule({ providers: [provideRouter(routes)] });
   const harness = await RouterTestingHarness.create();
   await harness.navigateByUrl(url);
@@ -87,5 +88,17 @@ describe('what the Google Play build links to', () => {
     const text = JSON.stringify(lines).toLowerCase();
     expect(text).not.toMatch(/subscribe|subscription|\$\d|per month|a month|polar\b|billing/);
     expect(text).not.toContain('/subscribe');
+  });
+});
+
+describe('what the pages say about email', () => {
+  it('never promises that nothing is emailed, because Yaparr Cloud now emails the links a person asks for', async () => {
+    for (const url of ['/subscribe', '/privacy']) {
+      const text = (await page(url)).textContent!.replace(/\s+/g, ' ');
+      expect(text, url).not.toMatch(/nothing is (ever )?emailed to you by Yaparr|nothing is ever emailed/i);
+    }
+    const subscribe = (await page('/subscribe')).textContent!.replace(/\s+/g, ' ');
+    expect(subscribe).toContain('emails you a link to choose your password');
+    expect(subscribe).toContain('the only email Yaparr sends');
   });
 });
