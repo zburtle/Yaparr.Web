@@ -200,6 +200,3 @@ h2 { font-size: 1.75rem; }
 .a-part .mark { color: var(--amber); }
 .cell-note { display: block; font-size: .75rem; line-height: 1.25; color: var(--muted); margin-top: .1rem; }
 .compare-table .why { margin-top: 2rem; }
-.limits { margin-top: 1rem; }
-.limits ul { margin: .25rem 0 0; padding-left: 1.25rem; color: var(--muted); font-size: .95rem; }
-.limits li { margin: .35rem 0; }

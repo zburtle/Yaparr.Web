@@ -38,15 +38,6 @@ export const ROWS: Row[] = [
   { what: 'Backup and sync you can host yourself, optional', cells: [yes(), no('n/a'), no(), no('n/a'), no('n/a'), no()] },
 ];
 
-/** Where Yaparr is not the best choice, said plainly. */
-export const LIMITS = [
-  'A very large community. Rooms of a few dozen are tested; thousands of people are not something Yaparr is built or tested for.',
-  'Messages that must arrive while everyone is offline. Nothing is stored, apart from the optional seven-day copy that a Yaparr Cloud account can leave for people who are away.',
-  'Hiding where you are. The other people in a room see your IP address, because your computers connect to each other.',
-  'An independent audit. The protocol has not had one yet.',
-  'iPhone, iPad or the browser. Yaparr runs on Windows, Linux and Android.',
-];
-
 const MARK: Record<Answer, string> = { yes: '✓', no: '✗', part: '~' };
 const WORD: Record<Answer, string> = { yes: 'Yes', no: 'No', part: 'Partly' };
 
@@ -102,22 +93,12 @@ const WORD: Record<Answer, string> = { yes: 'Yes', no: 'No', part: 'Partly' };
           </article>
         }
       </div>
-
-      <div class="card limits">
-        <h3>Where Yaparr is not the best fit</h3>
-        <ul>
-          @for (l of limits; track l) {
-            <li>{{ l }}</li>
-          }
-        </ul>
-      </div>
     </section>
   `,
 })
 export class Compare {
   protected readonly apps = APPS;
   protected readonly rows = ROWS;
-  protected readonly limits = LIMITS;
   protected readonly mark = MARK;
   protected readonly word = WORD;
   protected readonly reasons = [
