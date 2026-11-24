@@ -180,3 +180,26 @@ h2 { font-size: 1.75rem; }
 .learn li { margin: .4rem 0; }
 .learn ul.learn-list { list-style: none; padding: 0; display: grid; gap: .75rem; }
 .learn .actions { margin-top: 2.5rem; }
+
+/* The comparison table on the home page */
+.sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.compare-table { padding-top: 4rem; }
+.compare-table h2 { text-align: center; }
+.table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.table-scroll:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+.table-scroll table { width: 100%; min-width: 46rem; border-collapse: separate; border-spacing: 0; font-size: .95rem; }
+.table-scroll th, .table-scroll td { padding: .65rem .7rem; text-align: center; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.table-scroll tbody tr:last-child th, .table-scroll tbody tr:last-child td { border-bottom: 0; }
+.table-scroll thead th { font-size: .95rem; color: var(--muted); }
+.table-scroll tbody th { text-align: left; font-weight: 500; position: sticky; left: 0; background: var(--surface); min-width: 12rem; }
+.table-scroll .us { background: color-mix(in srgb, var(--accent) 10%, var(--surface)); }
+.table-scroll thead th.us { color: var(--accent-strong); font-weight: 700; }
+.mark { font-weight: 700; font-size: 1.1rem; }
+.a-yes .mark { color: var(--accent-strong); }
+.a-no .mark { color: var(--muted); opacity: .6; }
+.a-part .mark { color: var(--amber); }
+.cell-note { display: block; font-size: .75rem; line-height: 1.25; color: var(--muted); margin-top: .1rem; }
+.compare-table .why { margin-top: 2rem; }
+.limits { margin-top: 1rem; }
+.limits ul { margin: .25rem 0 0; padding-left: 1.25rem; color: var(--muted); font-size: .95rem; }
+.limits li { margin: .35rem 0; }
