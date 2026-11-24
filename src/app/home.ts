@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Downloads } from './downloads.component';
 import { REPO } from './downloads';
+import { Compare } from './compare';
 import { HowItWorks } from './how-it-works';
 
 @Component({
   selector: 'app-home',
-  imports: [Downloads, HowItWorks, RouterLink],
+  imports: [Compare, Downloads, HowItWorks, RouterLink],
   template: `
     <section class="hero">
       <div class="wrap">
@@ -31,6 +32,8 @@ import { HowItWorks } from './how-it-works';
         }
       </div>
     </section>
+
+    <app-compare />
 
     <section class="band" id="how">
       <div class="wrap">
